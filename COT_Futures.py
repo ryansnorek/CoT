@@ -12,7 +12,7 @@ lf_long, lf_short, lf_spreading = [], [], []
 lf_long_change, lf_short_change, lf_spreading_change = [], [], []
 
 def financials():
-    # Retrieve CoT Financials Futures from URL
+    # Retrieve CoT Financial Futures from URL
     retrieve(CoT_fin_url,'cot_fin.txt')
 
     # Open CoT Financial Futures file and organize data
