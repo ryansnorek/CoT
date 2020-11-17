@@ -20,10 +20,10 @@ def financials():
         organize_data(txtFile)
 
 def disaggregated():
-    # Retrieve CoT Disaggregate Futures from URL
+    # Retrieve CoT Disaggregated Futures from URL
     retrieve(CoT_dis_url,'cot_dis.txt')
 
-    # Open CoT Financial Futures file and organize data
+    # Open CoT Disaggregated Futures file and organize data
     with open("cot_dis.txt", 'r') as txtFile:
         organize_data(txtFile)
 
@@ -37,7 +37,7 @@ def organize_data(txtFile):
     for line in CoT_list:
         line = line.split(',') 
 
-        # Skip lines that have a comma in the main title
+        # Skip lines that have a comma in the main title (unsolved solution)
         if len(line[0]) > 12:
             # Title, Date, Open Interest
             title.append(line[0]) 
@@ -60,7 +60,7 @@ def organize_data(txtFile):
             lf_spreading.append(line[16])
             lf_spreading_change.append(line[33])
 
-    # Print list of title selections
+    # Print a numbered list of title selections
     i = 0
     for selection in title:
         print(i, title[i])
@@ -100,6 +100,41 @@ if select_report == 1:
     financials()
 elif select_report == 2:
     disaggregated()
+
+
+            
+
+        
+
+
+        
+
+        
+            
+   
+
+        
+           
+            
+
+       
+           
+          
+            
+       
+            
+       
+
+       
+
+        
+    
+    
+    
+   
+
+
+
 
 
             
