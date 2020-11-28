@@ -76,14 +76,14 @@ def organize_data(txtFile):
         print("Open Interest:",open_interest[inp])
         print("-------------------------")
         print("Asset Managers / Institutions")
-        print("")
-        print("Long:",am_long[inp],am_long_change[inp],"change")
+        
+        print("\nLong:",am_long[inp],am_long_change[inp],"change")
         print("Short:",am_short[inp],am_short_change[inp],"change")
         print("Spreading:",am_spreading[inp],am_spreading_change[inp],"change")
         print("-------------------------")
         print("Leveraged Funds")
-        print("")
-        print("Long:",lf_long[inp],lf_long_change[inp],"change")
+        
+        print("\nLong:",lf_long[inp],lf_long_change[inp],"change")
         print("Short:",lf_short[inp],lf_short_change[inp],"change")
         print("Spreading:",lf_spreading[inp],lf_spreading_change[inp],"change")
         print("-------------------------")
