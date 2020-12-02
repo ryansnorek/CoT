@@ -2,8 +2,8 @@
 
 This program formats a customized selection of the Long/Short/Spreading positions and weekly change from Asset Managers and Leveraged Funds.
 
-1. Financials
-2. Disaggregated
+1. Financial Futures
+2. Disaggregated Futures
 
 Source: https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm
 
