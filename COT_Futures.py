@@ -59,18 +59,18 @@ def parseFinancialData(data):
         lf_spreading_change.append(line[33])
 def printFinancialReport():
     for i in range(len(CoT_shortList)):
-        print("\n-------------------------")
+        print("\n--------------------------------------------------")
         print(title[i])
-        print("-------------------------")
+        print("--------------------------------------------------")
         print("Date:",date[i])
         print("Open Interest:",open_interest[i])
-        print("-------------------------")
+        print("--------------------------------------------------")
         print("Asset Managers / Institutions")
 
         print("\nLong:",am_long[i],am_long_change[i],"change")
         print("Short:",am_short[i],am_short_change[i],"change")
         print("Spreading:",am_spreading[i],am_spreading_change[i],"change")
-        print("-------------------------")
+        print("--------------------------------------------------")
         print("Leveraged Funds")
 
         print("\nLong:",lf_long[i],lf_long_change[i],"change")
@@ -143,18 +143,18 @@ def parseDisaggregatedData(data):
             am_spreading_change.append(line[63])
 def printDisaggregatedReport():
     for i in range(len(CoT_shortList)):
-        print("\n-------------------------")
+        print("\n--------------------------------------------------")
         print(title[i])
-        print("-------------------------")
+        print("--------------------------------------------------")
         print("Date:",date[i])
         print("Open Interest:",open_interest[i])
-        print("-------------------------")
+        print("--------------------------------------------------")
         print("Leveraged Funds / Swap Dealers")
 
         print("\nLong:",lf_long[i],lf_long_change[i],"change")
         print("Short:",lf_short[i],lf_short_change[i],"change")
         print("Spreading:",lf_spreading[i],lf_spreading_change[i],"change")
-        print("-------------------------")
+        print("--------------------------------------------------")
         print("Asset Managers / Institutions")
 
         print("\nLong:",am_long[i],am_long_change[i],"change")
@@ -181,6 +181,3 @@ def runProgram():
         printDisaggregatedReport()
 
 runProgram()
-
-
-        
