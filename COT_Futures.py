@@ -59,8 +59,9 @@ def parseFinancialData(data):
         lf_spreading_change.append(line[33])
 def printFinancialReport():
     for i in range(len(CoT_shortList)):
-        print(title[i])
         print("\n-------------------------")
+        print(title[i])
+        print("-------------------------")
         print("Date:",date[i])
         print("Open Interest:",open_interest[i])
         print("-------------------------")
