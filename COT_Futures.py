@@ -1,16 +1,21 @@
 from urllib.request import urlretrieve as retrieve
+import csv
 CoT_fin_url = 'https://www.cftc.gov/dea/newcot/FinFutWk.txt'
 CoT_dis_url = 'https://www.cftc.gov/dea/newcot/f_disagg.txt'
 
 # Skeletons for lists
 CoT_list = []
 CoT_shortList = []
-title, date, open_interest = [], [], []
-am_long, am_long_change = [], []
-am_short, am_short_change = [], []
-am_spreading, am_spreading_change = [], []
-lf_long, lf_short, lf_spreading = [], [], []
-lf_long_change, lf_short_change, lf_spreading_change = [], [], []
+title, date, open_interest = [],[],[]
+# Asset Managers
+am_long, am_long_change = [],[]
+am_short, am_short_change = [],[]
+# Hedge Funds
+hf_long, hf_long_change = [],[]
+hf_short, hf_short_change = [],[]
+# Commercial Banks
+cb_long, cb_long_change = [],[]
+cb_short, cb_short_change = [],[]
 
 def financialFutures():
     # Retrieve CoT Financials Futures text file from URL 
@@ -20,19 +25,21 @@ def financialFutures():
     with open("cot_fin.txt", 'r') as txtFile:
         organizeData(txtFile)
 
-    CoT_shortList.append(CoT_list[4]) # Euro
-    CoT_shortList.append(CoT_list[18]) # S&P Energy
-    CoT_shortList.append(CoT_list[19]) # S&P 500
-    CoT_shortList.append(CoT_list[20]) # S&P Financial
-    CoT_shortList.append(CoT_list[25]) # Nasdaq
-    CoT_shortList.append(CoT_list[27]) # Russel
-    CoT_shortList.append(CoT_list[32]) # Emerging
-    CoT_shortList.append(CoT_list[35]) # Bonds
-    CoT_shortList.append(CoT_list[37]) # 2YR
-    CoT_shortList.append(CoT_list[38]) # 10YR
-    CoT_shortList.append(CoT_list[46]) # Bitcoin
-    CoT_shortList.append(CoT_list[47]) # DXY
-    CoT_shortList.append(CoT_list[48]) # Vix
+    CoT_shortList.extend([
+        CoT_list[4], #Euro
+        CoT_list[17], # S&P Energy
+        CoT_list[18], # S&P 500
+        CoT_list[19], # S&P Financial
+        CoT_list[22], # Nasdaq
+        CoT_list[24], # Russel
+        CoT_list[28], # Emerging
+        CoT_list[31], # Bonds
+        CoT_list[33], # 2YR
+        CoT_list[34], # 10YR
+        CoT_list[42], # Bitcoin
+        CoT_list[43], # DXY
+        CoT_list[44] # Vix
+    ])
     return CoT_shortList
 def parseFinancialData(data):
     for line in data:
@@ -42,21 +49,21 @@ def parseFinancialData(data):
         date.append(line[2])
         open_interest.append(line[7])
 
-        # Asset Managers / Institutions
+        # Commercial Banks
+        cb_long.append(line[8])
+        cb_long_change.append(line[25])
+        cb_short.append(line[9])
+        cb_short_change.append(line[26])
+        # Asset Managers
         am_long.append(line[11])
         am_long_change.append(line[28])
         am_short.append(line[12])
         am_short_change.append(line[29])
-        am_spreading.append(line[13])   
-        am_spreading_change.append(line[30])
-
-        # Leveraged Funds
-        lf_long.append(line[14])
-        lf_long_change.append(line[31])
-        lf_short.append(line[15])
-        lf_short_change.append(line[32])
-        lf_spreading.append(line[16])
-        lf_spreading_change.append(line[33])
+        # Hedge Funds
+        hf_long.append(line[14])
+        hf_long_change.append(line[31])
+        hf_short.append(line[15])
+        hf_short_change.append(line[32])
 def printFinancialReport():
     for i in range(len(CoT_shortList)):
         print("\n--------------------------------------------------")
@@ -65,17 +72,17 @@ def printFinancialReport():
         print("Date:",date[i])
         print("Open Interest:",open_interest[i])
         print("--------------------------------------------------")
-        print("Asset Managers / Institutions")
-
-        print("\nLong:",am_long[i],am_long_change[i],"change")
-        print("Short:",am_short[i],am_short_change[i],"change")
-        print("Spreading:",am_spreading[i],am_spreading_change[i],"change")
+        print("Commercial Banks")
+        print("Long:",cb_long[i],cb_long_change[i],"change")
+        print("Short:",cb_short[i],cb_short_change[i],"change")
         print("--------------------------------------------------")
-        print("Leveraged Funds")
-
-        print("\nLong:",lf_long[i],lf_long_change[i],"change")
-        print("Short:",lf_short[i],lf_short_change[i],"change")
-        print("Spreading:",lf_spreading[i],lf_spreading_change[i],"change")
+        print("Asset Managers")
+        print("Long:",am_long[i],am_long_change[i],"change")
+        print("Short:",am_short[i],am_short_change[i],"change")
+        print("--------------------------------------------------")
+        print("Hedge Funds")
+        print("Long:",hf_long[i],hf_long_change[i],"change")
+        print("Short:",hf_short[i],hf_short_change[i],"change")
 
 def disaggregatedFutures():
     # Retrieve CoT Disaggregated Futures from URL
@@ -85,13 +92,15 @@ def disaggregatedFutures():
     with open("cot_dis.txt", 'r') as txtFile:
         organizeData(txtFile)
 
-    CoT_shortList.append(CoT_list[75]) # Natural Gas
-    CoT_shortList.append(CoT_list[193]) # WTI
-    CoT_shortList.append(CoT_list[201]) # Platinum
-    CoT_shortList.append(CoT_list[204]) # Silver
-    CoT_shortList.append(CoT_list[205]) # Copper
-    CoT_shortList.append(CoT_list[206]) # Gold
-    CoT_shortList.append(CoT_list[207]) # Gasoline
+    CoT_shortList.extend([
+        CoT_list[64], # Natural Gas
+        CoT_list[178], # WTI
+        CoT_list[185], # Platinum
+        CoT_list[188], # Silver
+        CoT_list[189], # Copper
+        CoT_list[190], # Gold
+        CoT_list[191] # Gasoline
+    ])
     return CoT_shortList
 def parseDisaggregatedData(data):
     for line in data:
@@ -103,44 +112,32 @@ def parseDisaggregatedData(data):
             title.append(line[0]) 
             date.append(line[3])
             open_interest.append(line[8])
-
-            # Leveraged Funds / Swap Dealers
-            lf_long.append(line[11])
-            lf_long_change.append(line[59])
-            lf_short.append(line[12])
-            lf_short_change.append(line[60])
-            lf_spreading.append(line[13])
-            lf_spreading_change.append(line[61])
-
-            # Asset Managers / Institutions
+            # Hedge Funds / Swap Dealers
+            hf_long.append(line[11])
+            hf_long_change.append(line[59])
+            hf_short.append(line[12])
+            hf_short_change.append(line[60])
+            # Asset Managers
             am_long.append(line[14])
             am_long_change.append(line[62])
             am_short.append(line[15])
             am_short_change.append(line[63])
-            am_spreading.append(line[16])   
-            am_spreading_change.append(line[64])
 
         if len(line[0]) > 12:
             # Title, Date, Open Interest
             title.append(line[0]) 
             date.append(line[2])
             open_interest.append(line[7])
-
-            # Leveraged Funds / Swap Dealers
-            lf_long.append(line[10])
-            lf_long_change.append(line[58])
-            lf_short.append(line[11])
-            lf_short_change.append(line[59])
-            lf_spreading.append(line[12])
-            lf_spreading_change.append(line[60])
-
-            # Asset Managers / Institutions
+            # Hedge Funds / Swap Dealers
+            hf_long.append(line[10])
+            hf_long_change.append(line[58])
+            hf_short.append(line[11])
+            hf_short_change.append(line[59])
+            # Asset Managers
             am_long.append(line[13])
             am_long_change.append(line[61])
             am_short.append(line[14])
             am_short_change.append(line[62])
-            am_spreading.append(line[15])   
-            am_spreading_change.append(line[63])
 def printDisaggregatedReport():
     for i in range(len(CoT_shortList)):
         print("\n--------------------------------------------------")
@@ -149,17 +146,13 @@ def printDisaggregatedReport():
         print("Date:",date[i])
         print("Open Interest:",open_interest[i])
         print("--------------------------------------------------")
-        print("Leveraged Funds / Swap Dealers")
-
-        print("\nLong:",lf_long[i],lf_long_change[i],"change")
-        print("Short:",lf_short[i],lf_short_change[i],"change")
-        print("Spreading:",lf_spreading[i],lf_spreading_change[i],"change")
+        print("Hedge Funds / Swap Dealers")
+        print("Long:",hf_long[i],hf_long_change[i],"change")
+        print("Short:",hf_short[i],hf_short_change[i],"change")
         print("--------------------------------------------------")
-        print("Asset Managers / Institutions")
-
-        print("\nLong:",am_long[i],am_long_change[i],"change")
+        print("Asset Managers")
+        print("Long:",am_long[i],am_long_change[i],"change")
         print("Short:",am_short[i],am_short_change[i],"change")
-        print("Spreading:",am_spreading[i],am_spreading_change[i],"change")
 
 # Organize the data from the CoT text file into a full list
 def organizeData(data):
@@ -181,3 +174,4 @@ def runProgram():
         printDisaggregatedReport()
 
 runProgram()
+
