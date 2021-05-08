@@ -7,3 +7,7 @@ This program formats a customized selection of the Long/Short/Spreading position
 
 Source: https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm
 
+AND 
+
+Checks the % changes vs the historical average in order to see what the money is doing different. [Need postgreSQL]
+
