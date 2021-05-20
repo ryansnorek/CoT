@@ -1,25 +1,40 @@
 from getNewReport import currentCotReport
 from analyzeReport import averages, changes, matches
-from variables import classProperties
+from variables import traderPositions
+from promptUser import getMinimumPercentFilter
 
 
-def applyPercentFilter(index, classProperty, percentRange):
-    x = float(getattr(changes[index], classProperty))
-    if (x > percentRange) or (x < -percentRange):
+def applyPercentFilter(m, position, percentMinimum):
+    # Returns true if the percent change meets or exceeds percent minimum
+
+    x = float(getattr(changes[m], position))
+
+    if (x >= percentMinimum) or (x <= -percentMinimum):
         return True
-    else:
-        return False
+
+    return False
 
 
-def printReport(classProperty, percentRange):
-    for i in matches:
-        if (applyPercentFilter(i, classProperty, percentRange)):
-            print(currentCotReport[i].title)
-            print(classProperty)
-            print('current: ', getattr(currentCotReport[i], classProperty))
-            print('average: ', getattr(averages[i], classProperty))
-            print('change: ', getattr(changes[i], classProperty), '%')
+def printReport(position, percentMinimum):
+    # Iterate through the existing matches (current positioning & average positioning)
+    # Print out a report with the percent change using the selected minimum as the filter
 
-# Adjust number for minimum percent change to check for, 50 = 50%, 100 = 100%, etc
-for p in classProperties:
-    printReport(p, 100)
+    for m in matches:
+        if (applyPercentFilter(m, position, percentMinimum)):
+            print(currentCotReport[m].date)
+            print(currentCotReport[m].title)
+            print(position)
+            print('current: ', getattr(currentCotReport[m], position))
+            print('average: ', getattr(averages[m], position))
+            print('change: ', getattr(changes[m], position), '%')
+            print()
+
+
+def runProgram():
+    percentMinimum = getMinimumPercentFilter()
+
+    for position in traderPositions:
+        printReport(position, percentMinimum)
+
+
+runProgram()
