@@ -4,6 +4,7 @@
 from ConfigDB import cur
 from getNewReport import currentCotReport
 from variables import *
+from promptUser import selectDatabase
 import psycopg2
 import math
 
@@ -24,7 +25,7 @@ class CotData:
         self.levMoneyShort = levMoneyShort
 
 
-table = 'cot5yraverage'
+table = selectDatabase()
 
 
 def loadAveragesFromDB():
