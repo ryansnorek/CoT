@@ -4,7 +4,6 @@
 from ConfigDB import cur
 from getNewReport import currentCotReport
 from variables import *
-# from promptUser import getTableFromUser
 import psycopg2
 import math
 
@@ -25,22 +24,17 @@ class CotData:
         self.levMoneyShort = levMoneyShort
 
 
-# def getDbTable():
-#     table = getUserSelection()
-#     return table
-
-
 table = 'cot5yraverage'
 
 
-def loadAverages():
-    # Returns a dict object that contains the historical average
-    # position for each category of each asset in the CoT Report.
+def loadAveragesFromDB():
+    # Returns a dict object that contains the average positioning in CoT Report history
 
     cur.execute(
         f"SELECT * FROM {table}")
     DB = cur.fetchall()
     cotAverages = {}
+
     for item in DB:
         title = item[0]
         openInterest = item[3]
@@ -61,13 +55,15 @@ def loadAverages():
             assetManLong, assetManShort,
             levMoneyLong, levMoneyShort
         )
+
     return cotAverages
 
 
 def findMatchingAverages():
     # Loads an array object with only the assets in the most
-    # recent CoT Report that have historical data to compare.
+    # recent CoT Report that have comparable historical data.
     cotMatches = []
+
     for title in currentCotReport:
         cur.execute(
             f"SELECT EXISTS(SELECT 1 FROM {table} WHERE Market_and_Exchange_Names='{title}')")
@@ -75,31 +71,36 @@ def findMatchingAverages():
 
         if (matchExists):
             cotMatches.append(title)
+
     return cotMatches
-
-
-def percentChange(x, y):
-    # Returns the percent change between 2 inputs unless the input
-    # is zero, in which case its a 100% change.
-    x, y = int(x), int(y)
-    if (x == 0):
-        return -100
-    elif (y == 0):
-        return 100
-    else:
-        return "{:.2f}".format((x - y) / y * 100)
 
 
 def getPercentChange():
     # Returns a dict object that contains the percent change between
-    # the most recent CoT Report and the average.
+    # the most recent CoT Report and the average
+
+    def percentChange(x, y):
+        # Returns the percent change between 2 inputs unless the input
+        # is zero, in which case its a 100% change
+
+        x, y = int(x), int(y)
+
+        if (x == 0):
+            return -100
+        elif (y == 0):
+            return 100
+
+        return "{:.2f}".format((x - y) / y * 100)
+
     cotChange = {}
     tempStorage = []
+
     for title in matches:
-        for el in classProperties:
+        for el in traderPositions:
             current = getattr(currentCotReport[title], el)
             average = getattr(averages[title], el)
             tempStorage.append(percentChange(current, average))
+
         openInterest = tempStorage[0]
         dealerLong = tempStorage[1]
         dealerShort = tempStorage[2]
@@ -114,11 +115,12 @@ def getPercentChange():
             assetManLong, assetManShort,
             levMoneyLong, levMoneyShort
         )
+
         tempStorage.clear()
+
     return cotChange
 
 
-# table = getTableFromUser()
-averages = loadAverages()
+averages = loadAveragesFromDB()
 matches = findMatchingAverages()
 changes = getPercentChange()
