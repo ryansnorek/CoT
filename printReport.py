@@ -21,13 +21,13 @@ def printReport(position, percentMinimum):
 
     def printOut(m, position):
         reportDate = currentCotReport[m].date
-        reportTitle = currentCotReport[m].title
+        assetTitle = currentCotReport[m].title
         currentNum = getattr(currentCotReport[m], position)
         averageNum = getattr(averages[m], position)
         changePercent = getattr(changes[m], position)
 
         print(reportDate)
-        print(reportTitle)
+        print(assetTitle)
         print(position)
         print('current: ', currentNum)
         print('average: ', averageNum)
