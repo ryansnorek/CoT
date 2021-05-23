@@ -19,15 +19,24 @@ def printReport(position, percentMinimum):
     # Iterate through the existing matches (current positioning & average positioning)
     # Print out a report with the percent change using the selected minimum as the filter
 
-    for m in matches:
-        if (applyPercentFilter(m, position, percentMinimum)):
-            print(currentCotReport[m].date)
-            print(currentCotReport[m].title)
-            print(position)
-            print('current: ', getattr(currentCotReport[m], position))
-            print('average: ', getattr(averages[m], position))
-            print('change: ', getattr(changes[m], position), '%')
-            print()
+    def printOut(m, position):
+        reportDate = currentCotReport[m].date
+        reportTitle = currentCotReport[m].title
+        currentNum = getattr(currentCotReport[m], position)
+        averageNum = getattr(averages[m], position)
+        changePercent = getattr(changes[m], position)
+
+        print(reportDate)
+        print(reportTitle)
+        print(position)
+        print('current: ', currentNum)
+        print('average: ', averageNum)
+        print('change: ', changePercent, '%')
+        print()
+
+    for match in matches:
+        if (applyPercentFilter(match, position, percentMinimum)):
+            printOut(match, position)
 
 
 def runProgram():
