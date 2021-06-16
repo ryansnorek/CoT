@@ -13,11 +13,11 @@ The user selects which year to compare to OR the 5 yr average. Then the user sel
 For example, by entering 250 it will only print out changes from the average that are greater or less than 250%.
 
 INSTRUCTIONS
-Contact me for password
-Add the password on ConfigDB.py
-Run printReport.py
-Type the full report name, e.g., cotreport2020
-Type a percent filter, e.g., 200
+1. Contact me for password
+2. Add the password on ConfigDB.py
+3. Run printReport.py
+4. Type the full report name, e.g., cotreport2020
+5. Type a percent filter, e.g., 200
 
 Recommended filter is 100 to 250
 
