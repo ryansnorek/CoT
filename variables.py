@@ -2,37 +2,20 @@
 # Stores all variables...
 # --------------------------------------------------------------------------------
 
-classProperties = [
+traderPositions = [
     'openInterest',
-    'dealerLong', 'dealerShort',
     'assetManLong', 'assetManShort',
     'levMoneyLong', 'levMoneyShort'
 ]
 
 title = []
 openInterest = []
-dealerLong = []
-dealerShort = []
 assetManLong = []
 assetManShort = []
 levMoneyLong = []
 levMoneyShort = []
-totalLong = []
-totalShort = []
-otherLong = []
-otherShort = []
+weekChange = []
 
-cotData = [
-    title, openInterest,
-    dealerLong, dealerShort,
-    assetManLong, assetManShort,
-    levMoneyLong, levMoneyShort,
-    totalLong, totalShort,
-    otherLong, otherShort
-]
-
-
-# cotAverages = []
 
 
 # Label: DB table of CoT report by year
@@ -42,5 +25,6 @@ cotYearDB = {
     'cot2018': 'cotreports2018',
     'cot2017': 'cotreports2017',
     'cot2016': 'cotreports2016',
-    'cot2015': 'cotreports2015'
+    'cot2015': 'cotreports2015',
+    'cot5yr': 'cot5yraverage'
 }
