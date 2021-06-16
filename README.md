@@ -10,7 +10,7 @@ The output is the current number of traders in a given security/asset, the avera
 The purpose is to see where Asset Managers and Leveraged Funds are putting their money.
 
 The user selects which year to compare to OR the 5 yr average. Then the user selects the range for the percent filter, i.e., the minimum % change.
-For example, by entering 250 it will only print out changes that meet or exceed a 250% change from the average.
+For example, by entering 250 it will only print out changes from the average that are greater or less than 250%.
 
 INSTRUCTIONS
 Contact me for password
