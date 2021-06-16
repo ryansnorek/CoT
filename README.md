@@ -19,3 +19,4 @@ Type a percent filter, e.g., 200
 
 Recommended filter is 100 to 250
 
+Enjoy!
