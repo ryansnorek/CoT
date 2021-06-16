@@ -3,7 +3,7 @@
 Commitments of Traders Financial Futures report
 
 Requires PostgreSQL
-Password available on request
+(password for ConfigDB available on request)
 
 This program compares trader positioning from the most recent Commitment of Traders (CoT) report to historical averages. 
 The output is the current number of traders in a given security/asset, the average number of traders in that security/asset, and the percent change.
