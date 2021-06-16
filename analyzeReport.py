@@ -11,14 +11,11 @@ import math
 
 class CotData:
     def __init__(self, title, openInterest,
-                 dealerLong, dealerShort,
                  assetManLong, assetManShort,
                  levMoneyLong, levMoneyShort
                  ):
         self.title = title
         self.openInterest = openInterest
-        self.dealerLong = dealerLong
-        self.dealerShort = dealerShort
         self.assetManLong = assetManLong
         self.assetManShort = assetManShort
         self.levMoneyLong = levMoneyLong
@@ -39,20 +36,13 @@ def loadAveragesFromDB():
     for item in DB:
         title = item[0]
         openInterest = item[3]
-        dealerLong = item[4]
-        dealerShort = item[5]
         assetManLong = item[6]
         assetManShort = item[7]
         levMoneyLong = item[8]
         levMoneyShort = item[9]
-        # totalLong.append(item[10])
-        # totalShort.append(item[11])
-        # otherLong.append(item[12])
-        # otherShort.append(item[13])
 
         cotAverages[title] = CotData(
             title, openInterest,
-            dealerLong, dealerShort,
             assetManLong, assetManShort,
             levMoneyLong, levMoneyShort
         )
@@ -83,7 +73,6 @@ def getPercentChange():
     def percentChange(x, y):
         # Returns the percent change between 2 inputs unless the input
         # is zero, in which case its a 100% change
-
         x, y = int(x), int(y)
 
         if (x == 0):
@@ -91,7 +80,7 @@ def getPercentChange():
         elif (y == 0):
             return 100
 
-        return "{:.2f}".format((x - y) / y * 100)
+        return round(((x - y) / y * 100), 2)
 
     cotChange = {}
     tempStorage = []
@@ -103,16 +92,13 @@ def getPercentChange():
             tempStorage.append(percentChange(current, average))
 
         openInterest = tempStorage[0]
-        dealerLong = tempStorage[1]
-        dealerShort = tempStorage[2]
-        assetManLong = tempStorage[3]
-        assetManShort = tempStorage[4]
-        levMoneyLong = tempStorage[5]
-        levMoneyShort = tempStorage[6]
+        assetManLong = tempStorage[1]
+        assetManShort = tempStorage[2]
+        levMoneyLong = tempStorage[3]
+        levMoneyShort = tempStorage[4]
 
         cotChange[title] = CotData(
             title, openInterest,
-            dealerLong, dealerShort,
             assetManLong, assetManShort,
             levMoneyLong, levMoneyShort
         )
