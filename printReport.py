@@ -29,7 +29,6 @@ def printReport(position, percentMinimum):
         print(reportDate)
         print(assetTitle)
         print(position)
-        print('week change: ', )
         print('current: ', currentNum)
         print('average: ', averageNum)
         print('change: ', changePercent, '%')
