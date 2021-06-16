@@ -1,5 +1,7 @@
 # CoT
+
 Commitments of Traders Financial Futures report
+
 Requires PostgreSQL
 Password available on request
 
