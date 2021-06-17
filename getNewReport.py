@@ -8,19 +8,26 @@ import csv
 
 class CotData:
     def __init__(self, title, date, openInterest,
-                 dealerLong, dealerShort,
                  assetManLong, assetManShort,
-                 levMoneyLong, levMoneyShort
+                 levMoneyLong, levMoneyShort,
+                 openInterestWeekChange,
+                 assetManLongWeekChange,
+                 assetManShortWeekChange,
+                 levMoneyLongWeekChange,
+                 levMoneyShortWeekChange
                  ):
         self.title = title
         self.date = date
         self.openInterest = openInterest
-        self.dealerLong = dealerLong
-        self.dealerShort = dealerShort
         self.assetManLong = assetManLong
         self.assetManShort = assetManShort
         self.levMoneyLong = levMoneyLong
         self.levMoneyShort = levMoneyShort
+        self.openInterestWeekChange = openInterestWeekChange
+        self.assetManLongWeekChange = assetManLongWeekChange
+        self.assetManShortWeekChange = assetManShortWeekChange
+        self.levMoneyLongWeekChange = levMoneyLongWeekChange
+        self.levMoneyShortWeekChange = levMoneyShortWeekChange
 
 
 def loadReportData():
@@ -29,25 +36,33 @@ def loadReportData():
     cotReport = {}
 
     # Read through the data and store each section into an array
+    # Remove spaces and clean up text
     with open('cotFin.txt', 'r') as textFile:
         for line in textFile:
             data = str(line.splitlines()).split(',')
             title = data[0].replace('"', '').replace('[', '').replace("'", '')
             date = data[2]
             openInterest = data[7].replace(' ', '')
-            dealerLong = data[8].replace(' ', '')
-            dealerShort = data[9].replace(' ', '')
             assetManLong = data[11].replace(' ', '')
             assetManShort = data[12].replace(' ', '')
             levMoneyLong = data[14].replace(' ', '')
             levMoneyShort = data[15].replace(' ', '')
+            openInterestWeekChange = data[24].replace(' ', '')
+            assetManLongWeekChange = data[28].replace(' ', '')
+            assetManShortWeekChange = data[29].replace(' ', '')
+            levMoneyLongWeekChange = data[31].replace(' ', '')
+            levMoneyShortWeekChange = data[32].replace(' ', '')
 
-            # Load object with variables
+            # Load object with data variables
             cotReport[title] = CotData(
                 title, date, openInterest,
-                dealerLong, dealerShort,
                 assetManLong, assetManShort,
-                levMoneyLong, levMoneyShort
+                levMoneyLong, levMoneyShort,
+                openInterestWeekChange,
+                assetManLongWeekChange,
+                assetManShortWeekChange,
+                levMoneyLongWeekChange,
+                levMoneyShortWeekChange
             )
     return cotReport
 
