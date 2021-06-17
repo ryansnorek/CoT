@@ -15,6 +15,25 @@ def applyPercentFilter(m, position, percentMinimum):
     return False
 
 
+def getWeekChange(title, traderPosition):
+    if (traderPosition == 'openInterest'):
+        weekChange = currentCotReport[title].openInterestWeekChange
+
+    elif ('assetMan' in traderPosition):
+        if ('Long' in traderPosition):
+            weekChange = currentCotReport[title].assetManLongWeekChange
+        else:
+            weekChange = currentCotReport[title].assetManShortWeekChange
+
+    elif ('levMoney' in traderPosition):
+        if ('Long' in traderPosition):
+            weekChange = currentCotReport[title].levMoneyLongWeekChange
+        else:
+            weekChange = currentCotReport[title].levMoneyShortWeekChange
+
+    return weekChange
+
+
 def printReport(position, percentMinimum):
     # Iterate through the existing matches (current positioning & average positioning)
     # Print out a report with the percent change using the selected minimum as the filter
@@ -22,6 +41,7 @@ def printReport(position, percentMinimum):
     def printFormatted(m, position):
         reportDate = currentCotReport[m].date
         assetTitle = currentCotReport[m].title
+        weekChange = getWeekChange(assetTitle, position)
         currentNum = getattr(currentCotReport[m], position)
         averageNum = getattr(averages[m], position)
         changePercent = getattr(changes[m], position)
@@ -29,6 +49,8 @@ def printReport(position, percentMinimum):
         print(reportDate)
         print(assetTitle)
         print(position)
+        print('week change: ', weekChange)
+
         print('current: ', currentNum)
         print('average: ', averageNum)
         print('change: ', changePercent, '%')
