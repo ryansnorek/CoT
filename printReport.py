@@ -14,24 +14,27 @@ def applyPercentFilter(m, position, percentMinimum):
 
     return False
 
-
+# Change in positioning from last week's report
 def getWeekChange(title, traderPosition):
     if (traderPosition == 'openInterest'):
         weekChange = currentCotReport[title].openInterestWeekChange
+        return weekChange
 
     elif ('assetMan' in traderPosition):
         if ('Long' in traderPosition):
             weekChange = currentCotReport[title].assetManLongWeekChange
-        else:
-            weekChange = currentCotReport[title].assetManShortWeekChange
+            return weekChange
+
+        weekChange = currentCotReport[title].assetManShortWeekChange
+        return weekChange
 
     elif ('levMoney' in traderPosition):
         if ('Long' in traderPosition):
             weekChange = currentCotReport[title].levMoneyLongWeekChange
-        else:
-            weekChange = currentCotReport[title].levMoneyShortWeekChange
+            return weekChange
 
-    return weekChange
+        weekChange = currentCotReport[title].levMoneyShortWeekChange
+        return weekChange
 
 
 def printReport(position, percentMinimum):
