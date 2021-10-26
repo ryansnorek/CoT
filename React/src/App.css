@@ -1,0 +1,24 @@
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(12px + 2vmin);
+  color: white;
+}
+
+.App-launch {
+  font-family: sans-serif;
+  font-size: calc(16px + 2vmin);
+  font-weight: bold;
+  background: #1e2127;
+  border: 1px solid #4f4f4f;
+  padding: 2%;
+  margin: 6% 0;
+  box-shadow: 0 0 5px #4f4f4f;
+  bottom: 100px;
+  text-decoration: none;
+}

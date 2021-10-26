@@ -1,0 +1,281 @@
+/*  ------------------------------- Reset -------------------------------  */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	padding: 0;
+	vertical-align: baseline;
+} 
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+} 
+
+/*  ------------------------------- Global -------------------------------  */
+* {
+    box-sizing: border-box;
+    max-width: 100%;
+    font-family: sans-serif;
+    background-color: #282c34;
+    color:  lavender;
+    /* border: 1px dotted rgb(223, 217, 217); */
+}
+a {
+  text-decoration: none;
+}
+html {
+    font-size: 62.5%;
+    margin: 0 auto;
+}
+body {
+  line-height: 1.5;
+  margin: 0 auto;
+}
+p {
+  font-size: 2rem;
+}
+.follow {
+  color: #dee6df;
+  font-size: 2rem;
+}
+button {
+  cursor: pointer;
+  background: #1e2127;
+  border: 1px solid #4f4f4f;
+  padding: 3.6% 5%;
+  font-size: 2rem;
+}
+button:hover {
+  border: 1px lavender solid;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 3% 30%;
+}
+input {
+  width: 100%;
+  padding: 6%;
+  margin: 3% 0;
+}
+form button {
+  margin-top: 6%; 
+}
+
+/* HEADER */
+#header {
+  display: flex;
+  justify-content: space-between;
+  margin: 2%;
+  font-size: 2rem;
+
+  /* position: fixed; */
+  width: 95%; 
+}
+
+#header-logo {
+  text-align: center;
+}
+#header nav {
+  width: 69%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+#header a {
+  font-weight: bold;
+  margin: 0 3%
+}
+#header a:hover {
+  color: lavender;
+}
+/* LOGIN / CREATE ACCOUNT */
+.create-button {
+  padding: 1.6% 2%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* COT REPORT */
+.report {
+  display: flex;
+  flex-direction: column;
+}
+.report h3 {
+  color: #dee6df;
+}
+.report .top {
+  display: flex;
+  flex-direction: column;
+  margin: 0 1%;
+  height: 50%;
+  width: 33%;
+}
+.report .top p {
+  text-align: left;
+  margin: 0;
+}
+.user-inputs {
+  display: flex;
+}
+.user-select {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.text {
+  width: 90%;
+}
+.text p {
+  border-bottom: 1px solid #4f4f4f;
+  background-color: #1d2127;
+}
+.dropdown {
+  font-size: 2rem;
+  height: 100%;
+  box-shadow: 0px 0px 1px 0px #4f4f4f;
+  border-bottom: 1px solid #4f4f4f;
+  background-color: #1d2127;
+  opacity: 0.9;
+}
+.section {
+  display: flex;
+}
+.title {
+  border-bottom: 1px solid #4f4f4f;
+  font-size: 2rem;
+  margin-left: 1%;
+}
+.trader {
+  margin-left: 1%;
+  font-size: 2rem;
+}
+.data {
+  width: 100%;
+  background-color: #1d2127;
+  padding: 1%;
+  margin: 0;
+}
+.data p {
+  background-color: #1d2127;
+  font-size: 1.8rem;
+  padding: 0.5%;
+  margin: 0;
+}
+.green {
+  color: greenyellow;
+}
+.red {
+  color: #f44336;
+}
+
+
+
+.icon {
+  width: 13%;
+  background-color: #1d2127;
+}
+.long {
+  
+}
+.short {
+  
+}
+
+
+.glow {
+  color: lavender;
+
+}
+.glow:hover {
+  color: lavender;
+  border: 1px solid lavender;
+}
+
+.hide {
+  display: none;
+}
+@media (max-width: 740px) {
+  p {
+    font-size: 1.6rem;
+  }
+  .dropdown {
+    font-size: 1.6rem;
+    width: 14%;
+  }
+  .icon {
+    width: 26%;
+  }
+  .data p {
+    /* font-size: 1.4rem; */
+  }
+}
+
+@media (max-width: 405px) {
+  * {
+    /* border: 1px solid white; */
+  }
+  #header {
+    margin-top: 6%;
+    margin-bottom: 12%;
+  }
+  #header h3 {
+    font-size: 1.8rem;
+  }
+  #header a {
+    font-size: 1.8rem;
+  }
+  p {
+    font-size: 1.4rem;
+  } 
+  .dropdown {
+    width: 24%;
+  }
+  form {
+    margin-top: 20%; 
+    margin-bottom: 6%;
+  }
+  input {
+    padding: 12%;
+  }
+  form button {
+    margin-top: 18%;
+  }
+  button {
+    font-size: 2rem;
+    padding: 4.6% 7%;
+  }
+  .create-button {
+    padding: 2% 3%;
+  }
+
+}
+@media (max-width: 375px) {
+
+}
