@@ -12,9 +12,9 @@ This script is designed to reveal large abnormal deviations in positioning of as
 - [ ] 1/18/22 shows leveraged funds increased short positions on the Nasdaq with 23,309 contracts. The total short positions was 98,027 
 which is about 200% higher than the 2020 average of 32,166. Since then there has been a large correction in this index
 
-
+## Other notes
 - [ ] My first personal project after learning to code 
 - [ ] Built a web scraper that pulls data from the Commitment of Traders (CoT) futures report
-- [ ] compares it to average positioning in a postgres database to find deviations from the norm
+- [ ] Compares it to average positioning in a postgres database to find deviations from the norm
 
 
