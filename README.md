@@ -5,7 +5,7 @@ Python | Postgres
 + React web app version
 
 ## Introduction
-This script is designed to reveal large abnormal deviations in positioning of asset managers and hedge funds in the futures market. 
+My first personal project after learning to code. This script is designed to reveal large abnormal deviations in positioning of asset managers and hedge funds in the futures market. 
 
 ## Successful Predictions
 - [ ] Dec 2020: Over 400% increase in long positions on the Energy sector resulting in a multi year bull market
@@ -13,8 +13,9 @@ This script is designed to reveal large abnormal deviations in positioning of as
 which is about 200% higher than the 2020 average of 32,166. Since then there has been a large correction in this index
 
 ## Other notes
-- [ ] My first personal project after learning to code 
-- [ ] Built a web scraper that pulls data from the Commitment of Traders (CoT) futures report
-- [ ] Compares it to average positioning in a postgres database to find deviations from the norm
+- [ ] Web scraper that pulls raw data from the weekly Commitment of Traders (CoT) futures report
+- [ ] Designed algorithms to compare it to average positioning in a postgres database to find deviations from the norm
+- [ ] Adjustable percent deviation filter range
+- [ ] Selectable year to compare the current report to
 
 
